@@ -170,7 +170,7 @@ export default function ReportPage() {
   }
 
   async function handleLogout() {
-    const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "/api";
+    const API_URL = "/api";
     await fetch(`${API_URL}/auth/logout`, { method: "POST", credentials: "include" });
     router.replace("/login");
   }
