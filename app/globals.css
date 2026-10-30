@@ -1033,6 +1033,124 @@ input:focus-visible {
   }
 }
 
+/* ── Login page ─────────────────────────────────────────────── */
+.login-shell {
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+  background:
+    radial-gradient(ellipse at 80% 0%, rgb(34 83 65 / 10%), transparent 35%),
+    var(--background);
+}
+
+.login-card {
+  width: 100%;
+  max-width: 400px;
+  padding: 36px 32px 28px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: rgb(17 22 27 / 97%);
+  box-shadow: 0 24px 60px rgb(0 0 0 / 25%);
+}
+
+.login-brand {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin-bottom: 28px;
+}
+
+.login-heading {
+  color: #f0f4f7;
+  font-size: 22px;
+  font-weight: 650;
+  letter-spacing: -0.5px;
+}
+
+.login-sub {
+  margin-top: 6px;
+  margin-bottom: 24px;
+  color: #8b98a5;
+  font-size: 13px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.login-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.login-label {
+  color: #9ba6b2;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.login-input {
+  height: 42px;
+  padding: 0 12px;
+  border: 1px solid #2a333c;
+  border-radius: 8px;
+  background: #141a20;
+  color: #edf2f7;
+  font-size: 13px;
+  transition: border-color 150ms;
+}
+
+.login-input::placeholder {
+  color: #4a5560;
+}
+
+.login-input:focus {
+  outline: none;
+  border-color: #54d6a0;
+}
+
+.login-submit {
+  width: 100%;
+  min-height: 44px;
+  margin-top: 4px;
+}
+
+.login-footer {
+  margin-top: 24px;
+  color: #586572;
+  font-size: 10px;
+  text-align: center;
+}
+
+/* ── Logout button ──────────────────────────────────────────── */
+.logout-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 36px;
+  margin-top: 12px;
+  padding: 0 12px;
+  border: 1px solid #3b3336;
+  border-radius: 8px;
+  background: transparent;
+  color: #d58e91;
+  font-size: 11px;
+  font-weight: 600;
+  transition: background 150ms, border-color 150ms;
+}
+
+.logout-btn:hover {
+  background: #302022;
+  border-color: #5a3336;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

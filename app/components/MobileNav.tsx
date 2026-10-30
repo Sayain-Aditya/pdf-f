@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:8000";
+
 export default function MobileNav({ active }: { active: "compare" | "report" | "reports" }) {
   const [open, setOpen] = useState(false);
   const router = useRouter();
@@ -10,6 +12,11 @@ export default function MobileNav({ active }: { active: "compare" | "report" | "
   function go(path: string) {
     setOpen(false);
     router.push(path);
+  }
+
+  async function handleLogout() {
+    await fetch(`${API_URL}/auth/logout`, { method: "POST", credentials: "include" });
+    router.replace("/login");
   }
 
   return (
@@ -92,6 +99,9 @@ export default function MobileNav({ active }: { active: "compare" | "report" | "
               <p className="mt-1 text-[11px] leading-5 text-slate-500">Review extracted values before approval.</p>
             </div>
           </div>
+          <button type="button" className="logout-btn" onClick={handleLogout}>
+            Sign out
+          </button>
           <div className="sidebar-version">INVOICE CONTROL · V1.0</div>
         </div>
       </aside>

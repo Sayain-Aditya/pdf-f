@@ -2,6 +2,7 @@
 
 import { useEffect, useState, type ReactNode } from "react";
 import { useRouter } from "next/navigation";
+import AuthGuard from "../components/AuthGuard";
 
 type ExtractedField = { value: string; page: number };
 
@@ -168,6 +169,12 @@ export default function ReportPage() {
     router.push("/");
   }
 
+  async function handleLogout() {
+    const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:8000";
+    await fetch(`${API_URL}/auth/logout`, { method: "POST", credentials: "include" });
+    router.replace("/login");
+  }
+
   if (!report) {
     return (
       <main className="app-shell">
@@ -201,6 +208,7 @@ export default function ReportPage() {
   ];
 
   return (
+    <AuthGuard>
     <main className="app-shell">
       <aside className="sidebar">
         <div className="brand-lockup">
@@ -243,6 +251,9 @@ export default function ReportPage() {
               </p>
             </div>
           </div>
+          <button type="button" className="logout-btn" onClick={handleLogout}>
+            Sign out
+          </button>
           <div className="sidebar-version">INVOICE CONTROL · V1.0</div>
         </div>
       </aside>
@@ -405,5 +416,6 @@ export default function ReportPage() {
         </div>
       </div>
     </main>
+    </AuthGuard>
   );
 }

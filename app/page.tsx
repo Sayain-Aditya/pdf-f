@@ -3,6 +3,7 @@
 
 import { useRef, useState, type ReactNode } from "react";
 import { useRouter } from "next/navigation";
+import AuthGuard from "./components/AuthGuard";
 
 type ComparisonResponse = {
   summary: Record<string, number>;
@@ -247,6 +248,7 @@ export default function Home() {
 
       const response = await fetch(`${API_URL}/compare`, {
         method: "POST",
+        credentials: "include",
         body: formData,
       });
 
@@ -284,7 +286,13 @@ export default function Home() {
     setError("");
   }
 
+  async function handleLogout() {
+    await fetch(`${API_URL}/auth/logout`, { method: "POST", credentials: "include" });
+    router.replace("/login");
+  }
+
   return (
+    <AuthGuard>
     <main className="app-shell">
       <aside className="sidebar">
         <div className="brand-lockup">
@@ -324,6 +332,9 @@ export default function Home() {
               </p>
             </div>
           </div>
+          <button type="button" className="logout-btn" onClick={handleLogout}>
+            Sign out
+          </button>
           <div className="sidebar-version">INVOICE CONTROL · V1.0</div>
         </div>
       </aside>
@@ -453,5 +464,6 @@ export default function Home() {
         </div>
       </div>
     </main>
+    </AuthGuard>
   );
 }
