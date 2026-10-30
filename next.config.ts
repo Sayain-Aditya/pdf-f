@@ -17,7 +17,7 @@ const nextConfig: NextConfig = {
   },
   async rewrites() {
     const backendUrl =
-      process.env.BACKEND_URL ?? "http://localhost:8000";
+      process.env.BACKEND_URL ?? "https://pdf-b.vercel.app";
     return [
       {
         source: "/api/:path*",
