@@ -10,12 +10,24 @@ export default function AuthGuard({ children }: { children: ReactNode }) {
   const [checked, setChecked] = useState(false);
 
   useEffect(() => {
+    if (sessionStorage.getItem("auth_verified") === "1") {
+      setChecked(true);
+      return;
+    }
     fetch(`${API_URL}/auth/me`, { credentials: "include" })
       .then((res) => {
-        if (!res.ok) router.replace("/login");
-        else setChecked(true);
+        if (!res.ok) {
+          sessionStorage.removeItem("auth_verified");
+          router.replace("/login");
+        } else {
+          sessionStorage.setItem("auth_verified", "1");
+          setChecked(true);
+        }
       })
-      .catch(() => router.replace("/login"));
+      .catch(() => {
+        sessionStorage.removeItem("auth_verified");
+        router.replace("/login");
+      });
   }, [router]);
 
   if (!checked) {

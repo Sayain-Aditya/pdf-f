@@ -172,6 +172,7 @@ export default function ReportPage() {
   async function handleLogout() {
     const API_URL = "/api";
     await fetch(`${API_URL}/auth/logout`, { method: "POST", credentials: "include" });
+    sessionStorage.removeItem("auth_verified");
     router.replace("/login");
   }
 
