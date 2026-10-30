@@ -3,6 +3,7 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { useRouter } from "next/navigation";
 import AuthGuard from "../components/AuthGuard";
+import MobileNav from "../components/MobileNav";
 
 type ExtractedField = { value: string; page: number };
 
@@ -260,6 +261,7 @@ export default function ReportPage() {
       </aside>
 
       <div className="main-column">
+        <MobileNav active="report" />
         <header className="topbar">
           <div className="flex items-center gap-2 text-xs text-slate-500">
             <button
